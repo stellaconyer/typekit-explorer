@@ -1,0 +1,18 @@
+Feature: Testing TypeKit API
+  Background:
+    Given I run `ruby ../../lib/explore_typekit.rb` interactively
+  Scenario: Viewing all kits
+    Given I type "list"
+    And I type "exit"
+    Then the output should contain "Your kits:\n"
+    And the output should contain "[kit_id]"
+  Scenario: Viewing a specific kit
+    Given I type "show [kit_id]"
+    And I type "exit"
+    Then the output should contain "Families:\n"
+    And the output should contain "[Name of Family]\n"
+  Scenario: Accessing an invalid kit
+    Given I type "show invalid kit"
+    And I type "exit"
+    Then the output should contain "Something went wrong: Not Found"
+  
